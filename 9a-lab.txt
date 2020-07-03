@@ -37,3 +37,38 @@ int max(int **a, int n){
 	printf("Íàèáîëüøàÿ ñóììà ýëåìåíòîâ ñòðîêè: %d \n", maxsum);
 	return (k);
 }
+void convert(int **a, int n, int k){
+	int i, j;
+	for (i = 0; i < n; i++){
+		if (i == k){
+			continue;
+		}
+		for (j = 0; j < n; j++)
+		{
+			a[i][j] = a[k][j];
+		}
+	}
+}
+int main()
+{
+	setlocale(LC_ALL, "");
+	int **a;
+	int i, n, k;
+	printf("Ââåäèòå ðàçìåðíîñòü ìàññèâà: ");
+	scanf("%d", &n);
+	a = new int *[n];
+	for (i = 0; i < n; i++)
+		a[i] = new int[n];
+	input(a, n);
+	printf("Èñõîäíûé ìàññèâ:\n");
+	output(a, n);
+	k = 0;
+	k=max(a, n);
+	convert(a, n, k);
+	printf("Ðåçóëüòàò ðàáîòû ïðîãðàììû:\n");
+	output(a, n);
+	for (i = 0; i < n; i++)
+		free(a[i]);
+	free(a);
+	getchar();
+}
